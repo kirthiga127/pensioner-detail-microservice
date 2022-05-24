@@ -14,18 +14,17 @@ phases:
     commands:
     - echo Build started on `date`
     - echo Building Java
-    - mvn compile
-    - mvn package -DskipTests
+    - mvn clean
     - echo Building the docker image..
     - docker build -t pms-pensioner-details-repository-890387 .
-    - docker tag pms-pensioner-details-repository-890387:latest 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-pensioner-details-repository-890387:latest
+    - docker tag pms-pensioner-details-repository-890387:final 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-pensioner-details-repository-890387:final
   post_build:
     commands:
     - echo Build completed on `date`
     - echo Pushing docker image
-    - docker push 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-pensioner-details-repository-890387:latest
+    - docker push 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-pensioner-details-repository-890387:final
     - echo Writting definition file
-    - printf '[{"name":"auth-container","imageUri":"%s"}]' 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-pensioner-details-repository-890387:latest > imagedefinitions.json
+    - printf '[{"name":"auth-container","imageUri":"%s"}]' 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-pensioner-details-repository-890387:final > imagedefinitions.json
 artifacts:
   files:
   - pensioner-detail-microservice/imagedefinitions.json
