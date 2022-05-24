@@ -2,6 +2,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
+      java: corretto11
       docker: 18
   pre_build:
     commands:
@@ -27,4 +28,4 @@ phases:
     - printf '[{"name":"auth-container","imageUri":"%s"}]' 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-pensioner-details-repository-890387:latest > imagedefinitions.json
 artifacts:
   files:
-  - pensionerdetail-microservice/imagedefinitions.json
+  - pensioner-detail-microservice/imagedefinitions.json
