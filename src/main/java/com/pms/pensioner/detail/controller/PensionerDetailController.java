@@ -68,5 +68,10 @@ public class PensionerDetailController {
 		
 	}
 	
+	@GetMapping("/health-check")
+	public ResponseEntity<String> healthCheck() {
+		return new ResponseEntity<>("pensioner-details-Ok", HttpStatus.OK);
+	}
+	
 
 }
